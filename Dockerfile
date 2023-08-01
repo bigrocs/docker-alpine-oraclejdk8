@@ -5,7 +5,7 @@ ENV JAVA_VERSION=8 \
     JAVA_BUILD=09 \
     JAVA_PATH=8c876547113c4e4aab3c868e9e0ec572 \
     JAVA_HOME="/usr/lib/jvm/default-jvm"
-    
+
 RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates unzip && \
     cd "/tmp" && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
@@ -55,3 +55,4 @@ RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates unzip &
     rm "${JAVA_HOME}/jre/lib/security/README.txt" && \
     apk del build-dependencies && \
     rm "/tmp/"*
+    
