@@ -1,4 +1,4 @@
-name: Build golang-gcc and Publish Docker
+name: Build docker-alpine-oraclejdk8 and Publish Docker
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
     - name: Publish to Docker Repository
       uses: elgohr/Publish-Docker-Github-Action@v4
       with:
-        name: bigrocs/golang-gcc
+        name: bigrocs/docker-alpine-oraclejdk8
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         tag_names: true
