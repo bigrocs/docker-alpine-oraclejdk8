@@ -1,15 +1,15 @@
 FROM judetan/alpine-glibc:latest
 
 ENV JAVA_VERSION=8 \
-    JAVA_UPDATE=381 \
-    JAVA_BUILD=09 \
-    JAVA_PATH=8c876547113c4e4aab3c868e9e0ec572 \
+    JAVA_UPDATE=171 \
+    JAVA_BUILD=11 \
+    JAVA_PATH=512cd62ec5174c3487ac17c61aaa89e8 \
     JAVA_HOME="/usr/lib/jvm/default-jvm"
 
 RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates unzip && \
     cd "/tmp" && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
-        "http://download.oracle.com/otn/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/${JAVA_PATH}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
+        "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}u${JAVA_UPDATE}-b${JAVA_BUILD}/${JAVA_PATH}/jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
     tar -xzf "jdk-${JAVA_VERSION}u${JAVA_UPDATE}-linux-x64.tar.gz" && \
     mkdir -p "/usr/lib/jvm" && \
     mv "/tmp/jdk1.${JAVA_VERSION}.0_${JAVA_UPDATE}" "/usr/lib/jvm/java-${JAVA_VERSION}-oracle" && \
@@ -50,9 +50,8 @@ RUN apk add --no-cache --virtual=build-dependencies wget ca-certificates unzip &
            "$JAVA_HOME/jre/lib/jfr" \
            "$JAVA_HOME/jre/lib/oblique-fonts" && \
     wget --header "Cookie: oraclelicense=accept-securebackup-cookie;" \
-        "http://download.oracle.com/otn/java/jce/${JAVA_VERSION}/jce_policy-${JAVA_VERSION}.zip" && \
+        "http://download.oracle.com/otn-pub/java/jce/${JAVA_VERSION}/jce_policy-${JAVA_VERSION}.zip" && \
     unzip -jo -d "${JAVA_HOME}/jre/lib/security" "jce_policy-${JAVA_VERSION}.zip" && \
     rm "${JAVA_HOME}/jre/lib/security/README.txt" && \
     apk del build-dependencies && \
     rm "/tmp/"*
-
